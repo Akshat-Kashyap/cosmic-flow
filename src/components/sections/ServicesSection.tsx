@@ -49,42 +49,39 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-24 relative">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-purple/10 rounded-full blur-[150px] pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="services" className="py-24">
+      <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="max-w-2xl mb-12"
         >
-          <span className="text-accent-purple text-sm font-medium uppercase tracking-wider">Services</span>
-          <h2 className="font-outfit font-bold text-4xl md:text-5xl text-foreground mt-4 mb-4">
-            What We <span className="gradient-text-purple">Offer</span>
+          <p className="text-sm font-medium text-primary mb-2">Services</p>
+          <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+            What we offer
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground">
             Comprehensive technology services to help your business thrive in the digital landscape.
           </p>
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group glass-card p-6 hover:bg-card/80 transition-all duration-300"
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="group p-5 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
             >
-              <div className="w-12 h-12 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-4 group-hover:bg-accent-purple/20 transition-colors">
-                <service.icon className="w-6 h-6 text-accent-purple" />
+              <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                <service.icon className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
               </div>
-              <h3 className="font-outfit font-semibold text-foreground mb-2">{service.title}</h3>
+              <h3 className="font-medium text-foreground mb-1">{service.title}</h3>
               <p className="text-sm text-muted-foreground">{service.description}</p>
             </motion.div>
           ))}

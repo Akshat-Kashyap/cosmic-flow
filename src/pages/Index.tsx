@@ -1,4 +1,3 @@
-import SciFiBackground from '@/components/SciFiBackground';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/sections/HeroSection';
@@ -10,11 +9,10 @@ import ContactSection from '@/components/sections/ContactSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
-      <SciFiBackground />
+    <div className="min-h-screen bg-background">
       <Navbar />
       
-      <main className="relative z-10">
+      <main>
         <HeroSection />
         <ProductShowcase />
         <VisionBento />

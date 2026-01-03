@@ -20,11 +20,10 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
-      title: "Message sent!",
+      title: "Message sent",
       description: "We'll get back to you within 24 hours.",
     });
     
@@ -36,69 +35,55 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const contactInfo = [
+    { icon: Mail, label: 'Email', value: 'contact@agaami.ai' },
+    { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
+    { icon: MapPin, label: 'Location', value: 'San Francisco, CA' },
+  ];
+
   return (
-    <section id="contact" className="py-24 relative">
-      {/* Background glow */}
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16">
+    <section id="contact" className="py-24">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left - Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-primary text-sm font-medium uppercase tracking-wider">Contact</span>
-            <h2 className="font-outfit font-bold text-4xl md:text-5xl text-foreground mt-4 mb-6">
-              Let's Build <span className="gradient-text">Together</span>
+            <p className="text-sm font-medium text-primary mb-2">Contact</p>
+            <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+              Let's build together
             </h2>
-            <p className="text-muted-foreground mb-10 max-w-md">
+            <p className="text-muted-foreground mb-8 max-w-md">
               Ready to transform your business with intelligent technology? 
               Get in touch and let's discuss how we can help.
             </p>
 
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-primary" />
+            <div className="space-y-4">
+              {contactInfo.map((item) => (
+                <div key={item.label} className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">{item.label}</p>
+                    <p className="font-medium text-foreground">{item.value}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="text-foreground font-medium">contact@agaami.ai</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Phone className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="text-foreground font-medium">+1 (555) 123-4567</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="text-foreground font-medium">San Francisco, CA</p>
-                </div>
-              </div>
+              ))}
             </div>
           </motion.div>
 
           {/* Right - Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-8"
+            transition={{ delay: 0.1 }}
+            className="p-6 rounded-xl bg-card border border-border"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -155,19 +140,19 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us about your project..."
-                  rows={5}
+                  rows={4}
                   required
                   className="bg-secondary/50 border-border resize-none"
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full group" disabled={isSubmitting}>
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? (
                   'Sending...'
                 ) : (
                   <>
                     Send Message
-                    <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <Send className="w-4 h-4 ml-2" />
                   </>
                 )}
               </Button>
