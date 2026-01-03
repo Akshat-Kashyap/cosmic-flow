@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, Clock, Rocket } from 'lucide-react';
+import { Check, Clock, ArrowRight } from 'lucide-react';
 
 const milestones = [
   {
@@ -42,84 +42,69 @@ const milestones = [
 
 const RoadmapSection = () => {
   return (
-    <section id="roadmap" className="py-24 relative overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
-      
+    <section id="roadmap" className="py-24 bg-secondary/30">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="max-w-2xl mb-12"
         >
-          <span className="text-primary text-sm font-medium uppercase tracking-wider">Roadmap</span>
-          <h2 className="font-outfit font-bold text-4xl md:text-5xl text-foreground mt-4 mb-4">
-            Our <span className="gradient-text">Journey</span>
+          <p className="text-sm font-medium text-primary mb-2">Roadmap</p>
+          <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+            Our journey
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground">
             See where we've been and where we're headed.
           </p>
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Center line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border hidden md:block" />
-          
-          <div className="space-y-12">
-            {milestones.map((milestone, index) => (
-              <motion.div
-                key={milestone.title}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex items-center gap-8 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Content */}
-                <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <div className={`glass-card p-6 inline-block ${
-                    milestone.status === 'current' ? 'border-primary/50 glow-cyan' : ''
-                  }`}>
-                    <span className={`text-sm font-medium ${
-                      milestone.status === 'completed' ? 'text-accent-green' :
-                      milestone.status === 'current' ? 'text-primary' : 'text-muted-foreground'
-                    }`}>
-                      {milestone.date}
-                    </span>
-                    <h3 className="font-outfit font-semibold text-lg text-foreground mt-1 mb-2">
-                      {milestone.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">{milestone.description}</p>
-                  </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {milestones.map((milestone, index) => (
+            <motion.div
+              key={milestone.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className={`p-5 rounded-xl border ${
+                milestone.status === 'current'
+                  ? 'bg-primary/5 border-primary/30'
+                  : 'bg-card border-border'
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                  milestone.status === 'completed'
+                    ? 'bg-accent-green/20 text-accent-green'
+                    : milestone.status === 'current'
+                    ? 'bg-primary/20 text-primary'
+                    : 'bg-secondary text-muted-foreground'
+                }`}>
+                  {milestone.status === 'completed' ? (
+                    <Check className="w-3.5 h-3.5" />
+                  ) : milestone.status === 'current' ? (
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  ) : (
+                    <Clock className="w-3.5 h-3.5" />
+                  )}
                 </div>
-
-                {/* Center icon */}
-                <div className="relative z-10 hidden md:flex">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    milestone.status === 'completed' ? 'bg-accent-green/20 text-accent-green' :
-                    milestone.status === 'current' ? 'bg-primary/20 text-primary animate-glow-pulse' :
-                    'bg-secondary text-muted-foreground'
-                  }`}>
-                    {milestone.status === 'completed' ? (
-                      <Check className="w-5 h-5" />
-                    ) : milestone.status === 'current' ? (
-                      <Rocket className="w-5 h-5" />
-                    ) : (
-                      <Clock className="w-5 h-5" />
-                    )}
-                  </div>
-                </div>
-
-                {/* Empty space for alignment */}
-                <div className="flex-1 hidden md:block" />
-              </motion.div>
-            ))}
-          </div>
+                <span className={`text-sm font-medium ${
+                  milestone.status === 'completed'
+                    ? 'text-accent-green'
+                    : milestone.status === 'current'
+                    ? 'text-primary'
+                    : 'text-muted-foreground'
+                }`}>
+                  {milestone.date}
+                </span>
+              </div>
+              <h3 className="font-medium text-foreground mb-1">{milestone.title}</h3>
+              <p className="text-sm text-muted-foreground">{milestone.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

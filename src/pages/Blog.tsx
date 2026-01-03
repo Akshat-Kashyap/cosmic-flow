@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowRight, FileText, Calendar, User } from 'lucide-react';
+import { ArrowRight, Calendar, User, FileText } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import SciFiBackground from '@/components/SciFiBackground';
 
 const blogPosts = [
   {
@@ -46,68 +44,67 @@ const blogPosts = [
 
 const Blog = () => {
   return (
-    <div className="min-h-screen bg-background relative">
-      <SciFiBackground />
+    <div className="min-h-screen bg-background">
       <Navbar />
       
-      <main className="relative z-10 pt-32 pb-24">
+      <main className="pt-24 pb-24">
         <div className="container mx-auto px-6">
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="max-w-2xl mb-12"
           >
-            <span className="text-primary text-sm font-medium uppercase tracking-wider">Blog</span>
-            <h1 className="font-outfit font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mt-4 mb-6">
-              Insights & <span className="gradient-text">Updates</span>
+            <p className="text-sm font-medium text-primary mb-2">Blog</p>
+            <h1 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+              Insights & Updates
             </h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground">
               Stay updated with the latest in AI, security, and enterprise technology from our team.
             </p>
           </motion.div>
 
           {/* Blog Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4">
             {blogPosts.map((post, index) => (
               <motion.article
                 key={post.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="glass-card p-6 group hover:bg-card/80 transition-all duration-300"
+                className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group cursor-pointer"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                  <span className="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
                     {post.category}
                   </span>
                   <span className="text-muted-foreground text-sm">{post.readTime}</span>
                 </div>
                 
-                <h2 className="font-outfit font-semibold text-xl text-foreground mb-3 group-hover:text-primary transition-colors">
+                <h2 className="font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
                   {post.title}
                 </h2>
                 
-                <p className="text-muted-foreground mb-6 line-clamp-2">
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
                   {post.excerpt}
                 </p>
                 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1">
-                      <User className="w-4 h-4" />
+                      <User className="w-3.5 h-3.5" />
                       {post.author}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-3.5 h-3.5" />
                       {post.date}
                     </span>
                   </div>
                   
-                  <button className="flex items-center gap-1 text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    Read more
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                  <span className="flex items-center gap-1 text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    Read
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </div>
               </motion.article>
             ))}
@@ -118,13 +115,11 @@ const Blog = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-center mt-16"
+            className="text-center mt-12"
           >
-            <div className="glass-card inline-block px-8 py-4">
-              <p className="text-muted-foreground">
-                <FileText className="w-5 h-5 inline mr-2" />
-                Full blog with CMS coming soon. Stay tuned!
-              </p>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-muted-foreground text-sm">
+              <FileText className="w-4 h-4" />
+              Full blog with CMS coming soon
             </div>
           </motion.div>
         </div>
