@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, ArrowRight, Users, Clock, BarChart3, 
-  Brain, Shield, Calendar, Sparkles, MessageSquare 
+  Brain, Shield, Calendar, Sparkles, MessageSquare,
+  CheckCircle2, Star, Play, Zap, TrendingUp, UserCheck,
+  Building2, Award, ChevronRight, Send
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -22,32 +24,74 @@ const features = [
   {
     icon: Clock,
     title: 'Smart Time Tracking',
-    description: 'Automatic attendance with AI-powered anomaly detection and flexible policies.',
+    description: 'AI-powered attendance with anomaly detection and flexible policies.',
+    highlight: false,
   },
   {
     icon: BarChart3,
     title: 'People Analytics',
-    description: 'Deep insights into team performance, engagement, and growth opportunities.',
+    description: 'Deep insights into team performance, engagement, and growth.',
+    highlight: false,
   },
   {
     icon: Brain,
     title: 'Zeno AI Assistant',
-    description: 'Your personal HR companion that handles queries, approvals, and scheduling.',
+    description: 'Your personal HR companion for queries, approvals, and scheduling.',
+    highlight: true,
   },
   {
     icon: Shield,
     title: 'Enterprise Security',
-    description: 'SOC 2 compliant with role-based access and complete audit trails.',
+    description: 'SOC 2 compliant with role-based access and audit trails.',
+    highlight: false,
+  },
+  {
+    icon: UserCheck,
+    title: 'Seamless Onboarding',
+    description: 'Automated workflows that get new hires productive faster.',
+    highlight: false,
+  },
+  {
+    icon: TrendingUp,
+    title: 'Performance Reviews',
+    description: 'Continuous feedback loops and goal tracking made simple.',
+    highlight: false,
   },
 ];
 
-const avatars = [
-  { name: 'Alex', color: 'from-pink-400 to-rose-500' },
-  { name: 'Jordan', color: 'from-purple-400 to-violet-500' },
-  { name: 'Sam', color: 'from-fuchsia-400 to-pink-500' },
-  { name: 'Taylor', color: 'from-rose-400 to-pink-500' },
-  { name: 'Casey', color: 'from-violet-400 to-purple-500' },
-  { name: 'Morgan', color: 'from-pink-400 to-fuchsia-500' },
+const stats = [
+  { value: '500+', label: 'Companies' },
+  { value: '50K+', label: 'Employees Managed' },
+  { value: '99.9%', label: 'Uptime' },
+  { value: '4.9/5', label: 'Rating' },
+];
+
+const testimonials = [
+  {
+    quote: "Comet transformed how we manage our distributed team. The AI assistant alone saves us 20+ hours per week.",
+    author: "Sarah Chen",
+    role: "VP of People",
+    company: "TechFlow Inc",
+    avatar: "SC",
+  },
+  {
+    quote: "Finally, an HRMS that our employees actually enjoy using. The interface is intuitive and the analytics are game-changing.",
+    author: "Marcus Johnson",
+    role: "HR Director",
+    company: "ScaleUp Labs",
+    avatar: "MJ",
+  },
+  {
+    quote: "Implementation took 2 weeks instead of the 3 months we expected. The Comet team's support was exceptional.",
+    author: "Emily Rodriguez",
+    role: "COO",
+    company: "GrowthPath",
+    avatar: "ER",
+  },
+];
+
+const logos = [
+  'TechCorp', 'Innovate.io', 'ScaleUp', 'DataFlow', 'CloudSync', 'NextGen'
 ];
 
 const CometPage = () => {
@@ -73,190 +117,276 @@ const CometPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <main className="pt-24">
-        {/* Hero - Team Constellation Style */}
-        <section className="relative min-h-[80vh] flex items-center overflow-hidden">
-          {/* Warm gradient background */}
-          <div className="absolute inset-0 overflow-hidden">
-            {/* Gradient sky */}
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-accent-pink/5 to-background" />
-            
-            {/* Stars/particles */}
-            {Array.from({ length: 30 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 rounded-full bg-accent-pink/50"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 2 + Math.random() * 2, delay: i * 0.1, repeat: Infinity }}
-              />
-            ))}
-
-            {/* Comet trails */}
-            {[1, 2, 3].map((i) => (
-              <motion.div
-                key={i}
-                className="absolute h-0.5 bg-gradient-to-r from-accent-pink/60 via-accent-pink/30 to-transparent"
-                style={{
-                  width: `${100 + i * 50}px`,
-                  top: `${20 + i * 15}%`,
-                  left: '-150px',
-                  transform: `rotate(-${15 + i * 5}deg)`,
-                }}
-                animate={{ x: ['0%', '200%'], opacity: [0, 1, 0] }}
-                transition={{ duration: 3, delay: i * 2, repeat: Infinity, repeatDelay: 5 }}
-              />
-            ))}
-
-            {/* Ambient glows */}
-            <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-accent-pink/15 rounded-full blur-[180px]" />
-            <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-accent-purple/10 rounded-full blur-[150px]" />
+      <main>
+        {/* Hero Section - Professional Split Layout */}
+        <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+          {/* Background Effects */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-pink/5 via-background to-accent-purple/5" />
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-pink/10 rounded-full blur-[150px] translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent-purple/8 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2" />
+            {/* Subtle grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Content */}
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-xl"
               >
-                <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors">
+                <Link 
+                  to="/" 
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors text-sm"
+                >
                   <ArrowLeft className="w-4 h-4" />
                   Back to Home
                 </Link>
 
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-pink/10 border border-accent-pink/30 mb-6">
-                  <Sparkles className="w-4 h-4 text-accent-pink" />
-                  <span className="text-sm font-medium text-accent-pink">Now Available</span>
-                </div>
-
-                <h1 className="font-outfit font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6">
-                  <span className="gradient-text-pink">Comet</span>
-                  <br />
-                  HRMS
-                </h1>
-
-                <p className="text-xl text-muted-foreground mb-8 max-w-lg">
-                  Where teams come together like stars in a constellation. Modern HR 
-                  platform with AI-powered assistance and beautiful people analytics.
-                </p>
-
-                <div className="flex flex-wrap gap-4">
-                  <Button size="lg" className="group glow-pink bg-accent-pink hover:bg-accent-pink/90" onClick={() => setIsModalOpen(true)}>
-                    Book Free Demo
-                    <Calendar className="w-4 h-4 ml-2" />
-                  </Button>
-                  <Button size="lg" variant="outline" className="border-accent-pink/50 text-accent-pink hover:bg-accent-pink/10">
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Talk to Sales
-                  </Button>
-                </div>
-              </motion.div>
-
-              {/* Visual - Orbiting Team Constellation */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative flex items-center justify-center min-h-[400px]"
-              >
-                {/* Central hub */}
-                <motion.div
-                  className="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-accent-pink to-accent-purple flex items-center justify-center"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-pink/10 border border-accent-pink/20 mb-6"
                 >
-                  <span className="text-3xl font-outfit font-bold text-white">C</span>
-                  
-                  {/* Pulse rings */}
-                  {[0, 1, 2].map((i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute inset-0 rounded-full border border-accent-pink/50"
-                      initial={{ scale: 1, opacity: 0.5 }}
-                      animate={{ scale: 2, opacity: 0 }}
-                      transition={{ duration: 2, delay: i * 0.7, repeat: Infinity }}
-                    />
-                  ))}
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-pink opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-pink"></span>
+                  </span>
+                  <span className="text-xs font-medium text-accent-pink">Now Available</span>
                 </motion.div>
 
-                {/* Orbit rings */}
-                <div className="absolute w-[240px] h-[240px] rounded-full border border-accent-pink/20" />
-                <div className="absolute w-[340px] h-[340px] rounded-full border border-accent-pink/10" />
+                <h1 className="font-outfit font-bold text-4xl sm:text-5xl lg:text-6xl text-foreground mb-6 leading-[1.1]">
+                  The Modern HRMS
+                  <br />
+                  <span className="bg-gradient-to-r from-accent-pink via-accent-purple to-accent-pink bg-clip-text text-transparent">
+                    Built for Growth
+                  </span>
+                </h1>
 
-                {/* Orbiting avatars - Inner ring */}
-                {avatars.slice(0, 3).map((avatar, i) => (
-                  <motion.div
-                    key={avatar.name}
-                    className="absolute"
-                    style={{ left: '50%', top: '50%' }}
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 15, repeat: Infinity, ease: 'linear', delay: i * -5 }}
-                  >
-                    <motion.div
-                      className={`w-12 h-12 rounded-full bg-gradient-to-br ${avatar.color} border-2 border-background flex items-center justify-center shadow-lg`}
-                      style={{ 
-                        transform: `translateX(${120}px) translateY(-50%) rotate(${-360}deg)`,
-                        marginLeft: '-24px',
-                        marginTop: '-24px',
-                      }}
-                      whileHover={{ scale: 1.2 }}
-                    >
-                      <span className="text-white font-medium text-sm">{avatar.name[0]}</span>
-                    </motion.div>
-                  </motion.div>
-                ))}
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Comet unifies your HR operations with AI-powered automation, beautiful analytics, 
+                  and an experience your team will actually love.
+                </p>
 
-                {/* Orbiting avatars - Outer ring */}
-                {avatars.slice(3).map((avatar, i) => (
-                  <motion.div
-                    key={avatar.name}
-                    className="absolute"
-                    style={{ left: '50%', top: '50%' }}
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: 'linear', delay: i * -6.67 }}
-                  >
-                    <motion.div
-                      className={`w-10 h-10 rounded-full bg-gradient-to-br ${avatar.color} border-2 border-background flex items-center justify-center shadow-lg`}
-                      style={{ 
-                        transform: `translateX(${170}px) translateY(-50%) rotate(${360}deg)`,
-                        marginLeft: '-20px',
-                        marginTop: '-20px',
-                      }}
-                    >
-                      <span className="text-white font-medium text-xs">{avatar.name[0]}</span>
-                    </motion.div>
-                  </motion.div>
-                ))}
-
-                {/* Connection lines */}
-                <svg className="absolute w-full h-full" style={{ left: 0, top: 0 }}>
-                  {[0, 60, 120, 180, 240, 300].map((angle, i) => (
-                    <motion.line
-                      key={angle}
-                      x1="50%"
-                      y1="50%"
-                      x2={`${50 + Math.cos((angle * Math.PI) / 180) * 35}%`}
-                      y2={`${50 + Math.sin((angle * Math.PI) / 180) * 35}%`}
-                      stroke="hsl(330 85% 60%)"
-                      strokeWidth="1"
-                      strokeOpacity="0.3"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1, delay: i * 0.1 }}
-                    />
+                {/* Trust Badges */}
+                <div className="flex flex-wrap items-center gap-4 mb-8">
+                  {[
+                    { icon: Shield, text: 'SOC 2 Type II' },
+                    { icon: Award, text: 'GDPR Ready' },
+                    { icon: Zap, text: '99.9% Uptime' },
+                  ].map((badge) => (
+                    <div key={badge.text} className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <badge.icon className="w-3.5 h-3.5 text-accent-pink" />
+                      <span>{badge.text}</span>
+                    </div>
                   ))}
-                </svg>
+                </div>
+
+                <div className="flex flex-wrap gap-4">
+                  <Button 
+                    size="lg" 
+                    className="bg-accent-pink hover:bg-accent-pink/90 text-white shadow-lg shadow-accent-pink/25 px-8"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Start Free Trial
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="border-border hover:bg-card group"
+                  >
+                    <Play className="w-4 h-4 mr-2 text-accent-pink group-hover:scale-110 transition-transform" />
+                    Watch Demo
+                  </Button>
+                </div>
               </motion.div>
+
+              {/* Product Mockup */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
+              >
+                {/* Main Dashboard Card */}
+                <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-2xl shadow-2xl shadow-accent-pink/10 overflow-hidden">
+                  {/* Browser Chrome */}
+                  <div className="flex items-center gap-2 px-4 py-3 border-b border-border/50 bg-muted/30">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
+                      <div className="w-3 h-3 rounded-full bg-green-400/80" />
+                    </div>
+                    <div className="flex-1 mx-4">
+                      <div className="bg-background/50 rounded-md px-3 py-1 text-xs text-muted-foreground text-center">
+                        app.comet.ai/dashboard
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Dashboard Content */}
+                  <div className="p-6 space-y-4">
+                    {/* Header */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="font-semibold text-foreground">Good morning, Sarah 👋</h3>
+                        <p className="text-xs text-muted-foreground">Here's your team overview</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent-pink to-accent-purple flex items-center justify-center">
+                          <span className="text-white text-xs font-medium">SC</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-3 gap-3">
+                      {[
+                        { label: 'Team Size', value: '124', change: '+5' },
+                        { label: 'Attendance', value: '96%', change: '+2%' },
+                        { label: 'Open Roles', value: '8', change: '-3' },
+                      ].map((stat) => (
+                        <div key={stat.label} className="bg-muted/50 rounded-xl p-3">
+                          <p className="text-xs text-muted-foreground">{stat.label}</p>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-xl font-semibold text-foreground">{stat.value}</span>
+                            <span className="text-xs text-green-400">{stat.change}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Chart Placeholder */}
+                    <div className="bg-muted/30 rounded-xl p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-medium text-foreground">Team Activity</span>
+                        <span className="text-xs text-muted-foreground">This week</span>
+                      </div>
+                      <div className="flex items-end gap-2 h-20">
+                        {[40, 65, 45, 80, 55, 70, 90].map((height, i) => (
+                          <motion.div
+                            key={i}
+                            className="flex-1 bg-gradient-to-t from-accent-pink/60 to-accent-pink rounded-sm"
+                            initial={{ height: 0 }}
+                            animate={{ height: `${height}%` }}
+                            transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Recent Activity */}
+                    <div className="space-y-2">
+                      {[
+                        { name: 'Alex joined Engineering', time: '2m ago' },
+                        { name: 'Leave approved for Jordan', time: '15m ago' },
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center justify-between py-2 px-3 bg-muted/30 rounded-lg">
+                          <span className="text-xs text-foreground">{item.name}</span>
+                          <span className="text-xs text-muted-foreground">{item.time}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating AI Chat */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                  className="absolute -bottom-4 -left-8 w-64 bg-card border border-border rounded-xl shadow-xl p-4"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-pink to-accent-purple flex items-center justify-center">
+                      <Brain className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Zeno AI</p>
+                      <p className="text-xs text-muted-foreground">Online</p>
+                    </div>
+                  </div>
+                  <div className="bg-muted/50 rounded-lg p-2.5 text-xs text-muted-foreground">
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                    >
+                      "3 pending approvals need your attention. Want me to summarize them?"
+                    </motion.span>
+                  </div>
+                </motion.div>
+
+                {/* Floating Notification */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1, duration: 0.5 }}
+                  className="absolute -top-4 -right-4 bg-card border border-border rounded-lg shadow-lg px-4 py-2.5 flex items-center gap-3"
+                >
+                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+                    <CheckCircle2 className="w-4 h-4 text-green-400" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-foreground">New hire onboarded</p>
+                    <p className="text-xs text-muted-foreground">Alex → Engineering</p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Stats Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-border/50"
+            >
+              {stats.map((stat, i) => (
+                <div key={stat.label} className="text-center">
+                  <motion.p 
+                    className="text-3xl font-bold text-foreground"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 + i * 0.1 }}
+                  >
+                    {stat.value}
+                  </motion.p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Social Proof - Logo Bar */}
+        <section className="py-16 border-y border-border/50 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <p className="text-center text-sm text-muted-foreground mb-8">
+              Trusted by forward-thinking teams worldwide
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
+              {logos.map((logo) => (
+                <motion.div
+                  key={logo}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="text-xl font-outfit font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+                >
+                  {logo}
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Features */}
+        {/* Features Bento Grid */}
         <section className="py-24 relative">
           <div className="container mx-auto px-6">
             <motion.div
@@ -266,119 +396,251 @@ const CometPage = () => {
               className="text-center mb-16"
             >
               <h2 className="font-outfit font-bold text-3xl md:text-4xl text-foreground mb-4">
-                Everything Your <span className="gradient-text-pink">Team</span> Needs
+                Everything Your Team Needs
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto">
                 A complete HR platform that brings your people together and helps them thrive.
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="glass-card p-6 text-center group hover:bg-card/80 transition-colors"
+                  transition={{ delay: index * 0.05 }}
+                  className={`group relative p-6 rounded-2xl border transition-all duration-300 hover:shadow-lg ${
+                    feature.highlight 
+                      ? 'md:col-span-2 lg:col-span-1 bg-gradient-to-br from-accent-pink/10 to-accent-purple/5 border-accent-pink/30 hover:border-accent-pink/50' 
+                      : 'bg-card/50 border-border hover:border-border/80 hover:bg-card'
+                  }`}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-accent-pink/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-pink/20 transition-colors">
-                    <feature.icon className="w-7 h-7 text-accent-pink" />
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
+                    feature.highlight 
+                      ? 'bg-accent-pink/20 group-hover:bg-accent-pink/30' 
+                      : 'bg-muted group-hover:bg-muted/80'
+                  }`}>
+                    <feature.icon className={`w-6 h-6 ${feature.highlight ? 'text-accent-pink' : 'text-foreground'}`} />
                   </div>
-                  <h3 className="font-outfit font-semibold text-foreground mb-2">{feature.title}</h3>
+                  <h3 className="font-outfit font-semibold text-lg text-foreground mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  {feature.highlight && (
+                    <div className="mt-4 flex items-center gap-2 text-accent-pink text-sm font-medium">
+                      Learn more <ChevronRight className="w-4 h-4" />
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Zeno AI Highlight */}
-        <section className="py-24 relative bg-gradient-to-b from-accent-pink/5 to-transparent">
+        {/* Zeno AI Section - Chat Interface */}
+        <section className="py-24 relative bg-gradient-to-b from-muted/30 to-transparent">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-pink/10 border border-accent-pink/20 mb-6">
+                  <Sparkles className="w-3.5 h-3.5 text-accent-pink" />
+                  <span className="text-xs font-medium text-accent-pink">AI-Powered</span>
+                </div>
+                <h2 className="font-outfit font-bold text-3xl md:text-4xl text-foreground mb-6">
+                  Meet Zeno, Your
+                  <br />
+                  <span className="text-accent-pink">AI HR Assistant</span>
+                </h2>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  Zeno handles the routine so your HR team can focus on what matters—your people. 
+                  From answering policy questions to scheduling interviews, Zeno is always available.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    'Instant answers to employee questions',
+                    'Automated leave and approval workflows',
+                    'Smart interview scheduling',
+                    'Personalized onboarding journeys',
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-foreground">
+                      <CheckCircle2 className="w-5 h-5 text-accent-pink flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Chat Interface Mockup */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="bg-card border border-border rounded-2xl shadow-xl overflow-hidden">
+                  {/* Chat Header */}
+                  <div className="flex items-center gap-3 px-5 py-4 border-b border-border bg-muted/30">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-pink to-accent-purple flex items-center justify-center">
+                      <Brain className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground">Zeno</p>
+                      <p className="text-xs text-green-400 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                        Online
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Chat Messages */}
+                  <div className="p-5 space-y-4 min-h-[300px]">
+                    {/* User message */}
+                    <div className="flex justify-end">
+                      <div className="bg-accent-pink text-white rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[80%]">
+                        <p className="text-sm">How many vacation days do I have left?</p>
+                      </div>
+                    </div>
+
+                    {/* AI response */}
+                    <div className="flex gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-pink to-accent-purple flex items-center justify-center flex-shrink-0">
+                        <Brain className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="bg-muted rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%]">
+                        <p className="text-sm text-foreground mb-2">
+                          You have <strong>12 vacation days</strong> remaining this year. Here's a quick breakdown:
+                        </p>
+                        <div className="bg-background/50 rounded-lg p-3 space-y-1 text-xs text-muted-foreground">
+                          <p>• Annual allowance: 20 days</p>
+                          <p>• Used: 8 days</p>
+                          <p>• Pending approval: 0 days</p>
+                        </div>
+                        <p className="text-sm text-foreground mt-2">
+                          Would you like to submit a vacation request?
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Quick actions */}
+                    <div className="flex gap-2 ml-11">
+                      <button className="px-3 py-1.5 text-xs font-medium bg-accent-pink/10 text-accent-pink rounded-lg hover:bg-accent-pink/20 transition-colors">
+                        Submit Request
+                      </button>
+                      <button className="px-3 py-1.5 text-xs font-medium bg-muted text-foreground rounded-lg hover:bg-muted/80 transition-colors">
+                        View Calendar
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Chat Input */}
+                  <div className="px-5 py-4 border-t border-border">
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="text"
+                        placeholder="Ask Zeno anything..."
+                        className="flex-1 bg-muted rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink/50"
+                      />
+                      <button className="w-10 h-10 bg-accent-pink rounded-xl flex items-center justify-center hover:bg-accent-pink/90 transition-colors">
+                        <Send className="w-4 h-4 text-white" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-24 relative">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card p-12 glow-pink"
+              className="text-center mb-16"
             >
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-pink/10 border border-accent-pink/30 mb-6">
-                    <Brain className="w-4 h-4 text-accent-pink" />
-                    <span className="text-sm font-medium text-accent-pink">AI-Powered</span>
-                  </div>
-                  <h2 className="font-outfit font-bold text-3xl text-foreground mb-6">
-                    Meet Zeno, Your AI HR Assistant
-                  </h2>
-                  <p className="text-muted-foreground mb-6">
-                    Zeno handles the routine so your HR team can focus on what matters—your people. 
-                    From answering policy questions to scheduling interviews, Zeno is always available.
-                  </p>
-                  <ul className="space-y-3">
-                    {[
-                      'Instant answers to employee questions',
-                      'Automated leave management',
-                      'Smart interview scheduling',
-                      'Personalized onboarding flows',
-                    ].map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent-pink" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex items-center justify-center">
-                  <motion.div
-                    className="relative w-48 h-48"
-                    animate={{ rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 6, repeat: Infinity }}
-                  >
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent-pink/30 to-accent-purple/30 backdrop-blur-xl border border-accent-pink/30" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Brain className="w-20 h-20 text-accent-pink" />
-                    </div>
-                    {/* Floating particles */}
-                    {[0, 1, 2, 3].map((i) => (
-                      <motion.div
-                        key={i}
-                        className="absolute w-2 h-2 rounded-full bg-accent-pink"
-                        style={{
-                          left: `${20 + i * 20}%`,
-                          top: `${10 + (i % 2) * 80}%`,
-                        }}
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-                      />
-                    ))}
-                  </motion.div>
-                </div>
-              </div>
+              <h2 className="font-outfit font-bold text-3xl md:text-4xl text-foreground mb-4">
+                Loved by HR Teams
+              </h2>
+              <p className="text-muted-foreground">
+                See what our customers have to say about Comet
+              </p>
             </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.author}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-card/50 border border-border rounded-2xl p-6 hover:shadow-lg hover:border-border/80 transition-all"
+                >
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-foreground mb-6 leading-relaxed">"{testimonial.quote}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-pink to-accent-purple flex items-center justify-center">
+                      <span className="text-white text-sm font-medium">{testimonial.avatar}</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground">{testimonial.author}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}, {testimonial.company}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* CTA */}
+        {/* CTA Section */}
         <section className="py-24 relative">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-accent-pink via-accent-purple to-accent-pink p-12 md:p-16 text-center"
             >
-              <h2 className="font-outfit font-bold text-3xl md:text-4xl text-foreground mb-4">
-                Ready to Transform Your HR?
-              </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-                Join hundreds of companies already using Comet to build better workplaces.
-              </p>
-              <Button size="lg" className="glow-pink bg-accent-pink hover:bg-accent-pink/90" onClick={() => setIsModalOpen(true)}>
-                Book Your Free Demo
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              {/* Background pattern */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
+              
+              <div className="relative z-10">
+                <h2 className="font-outfit font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4">
+                  Ready to Transform Your HR?
+                </h2>
+                <p className="text-white/80 max-w-xl mx-auto mb-8 text-lg">
+                  Join 500+ companies already using Comet to build better workplaces.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-accent-pink hover:bg-white/90 shadow-lg px-8"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Start Free Trial
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <MessageSquare className="w-4 h-4 mr-2" />
+                    Talk to Sales
+                  </Button>
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -388,47 +650,60 @@ const CometPage = () => {
 
       {/* Demo Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="glass-card border-accent-pink/30 max-w-lg">
+        <DialogContent className="bg-card border-border max-w-md">
           <DialogHeader>
-            <DialogTitle className="font-outfit text-2xl">Book a Free Demo</DialogTitle>
+            <DialogTitle className="font-outfit text-xl">Start Your Free Trial</DialogTitle>
             <DialogDescription>
-              See how Comet can transform your HR operations in a personalized demo.
+              Get started with Comet in minutes. No credit card required.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <Input
-                placeholder="Your name"
+                placeholder="Full name"
                 value={formData.name}
-                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="bg-secondary/50"
+                className="bg-muted border-border"
               />
               <Input
                 type="email"
                 placeholder="Work email"
                 value={formData.email}
-                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="bg-secondary/50"
+                className="bg-muted border-border"
               />
             </div>
             <Input
               placeholder="Company name"
               value={formData.company}
-              onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
+              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
               required
-              className="bg-secondary/50"
+              className="bg-muted border-border"
             />
-            <Input
-              placeholder="Team size (e.g., 50-100)"
+            <select
               value={formData.teamSize}
-              onChange={(e) => setFormData(prev => ({ ...prev, teamSize: e.target.value }))}
-              className="bg-secondary/50"
-            />
-            <Button type="submit" className="w-full bg-accent-pink hover:bg-accent-pink/90" disabled={isSubmitting}>
-              {isSubmitting ? 'Scheduling...' : 'Schedule Demo'}
+              onChange={(e) => setFormData({ ...formData, teamSize: e.target.value })}
+              className="w-full px-3 py-2 rounded-md bg-muted border border-border text-foreground text-sm"
+              required
+            >
+              <option value="">Team size</option>
+              <option value="1-50">1-50 employees</option>
+              <option value="51-200">51-200 employees</option>
+              <option value="201-500">201-500 employees</option>
+              <option value="500+">500+ employees</option>
+            </select>
+            <Button 
+              type="submit" 
+              className="w-full bg-accent-pink hover:bg-accent-pink/90"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Starting trial...' : 'Start Free Trial'}
             </Button>
+            <p className="text-xs text-center text-muted-foreground">
+              By signing up, you agree to our Terms and Privacy Policy
+            </p>
           </form>
         </DialogContent>
       </Dialog>
