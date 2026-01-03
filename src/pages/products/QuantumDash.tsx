@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Check, BarChart3, Zap, Shield, Lock } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, BarChart3, Zap, Shield, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -62,42 +62,10 @@ const QuantumDashPage = () => {
       <Navbar />
       
       <main className="pt-24">
-        {/* Hero Section - Mission Control Style */}
+        {/* Hero Section */}
         <section className="relative min-h-[80vh] flex items-center overflow-hidden">
-          {/* Cockpit-style background */}
-          <div className="absolute inset-0">
-            {/* Grid overlay */}
-            <div className="absolute inset-0 grid-pattern opacity-50" />
-            
-            {/* Holographic data streams */}
-            <svg className="absolute inset-0 w-full h-full">
-              <defs>
-                <linearGradient id="streamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="hsl(187 100% 50%)" stopOpacity="0" />
-                  <stop offset="50%" stopColor="hsl(187 100% 50%)" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="hsl(187 100% 50%)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              {[100, 200, 300, 400, 500].map((y, i) => (
-                <motion.line
-                  key={i}
-                  x1="-100"
-                  y1={y}
-                  x2="100%"
-                  y2={y}
-                  stroke="url(#streamGrad)"
-                  strokeWidth="1"
-                  initial={{ x1: '-100%' }}
-                  animate={{ x1: '100%' }}
-                  transition={{ duration: 3, delay: i * 0.5, repeat: Infinity }}
-                />
-              ))}
-            </svg>
-            
-            {/* Ambient glows */}
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[150px]" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-blue/20 rounded-full blur-[150px]" />
-          </div>
+          {/* Clean background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-background" />
 
           <div className="container mx-auto px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -112,12 +80,12 @@ const QuantumDashPage = () => {
                   Back to Home
                 </Link>
 
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 mb-6">
-                  <span className="w-2 h-2 rounded-full bg-accent-cyan animate-glow-pulse" />
-                  <span className="text-sm font-medium text-accent-cyan">Beta Access Available</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                  <span className="w-2 h-2 rounded-full bg-primary" />
+                  <span className="text-sm font-medium text-primary">Beta Access Available</span>
                 </div>
 
-                <h1 className="font-outfit font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6">
+                <h1 className="font-semibold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6">
                   <span className="gradient-text">Quantum</span>
                   <br />
                   Dash
@@ -125,29 +93,29 @@ const QuantumDashPage = () => {
 
                 <p className="text-xl text-muted-foreground mb-8 max-w-lg">
                   Mission control for your data. Real-time analytics with AI-powered insights, 
-                  delivered through a stunning holographic interface.
+                  delivered through a beautiful interface.
                 </p>
 
-                <Button size="lg" className="group glow-cyan" onClick={() => setIsModalOpen(true)}>
+                <Button size="lg" className="group" onClick={() => setIsModalOpen(true)}>
                   Join Waitlist
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
 
-              {/* Right - Holographic Dashboard Visual */}
+              {/* Right - Dashboard Visual */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="relative"
               >
-                <div className="relative glass-card p-6 glow-cyan">
+                <div className="relative bg-card border border-border rounded-2xl p-6 shadow-xl">
                   {/* Dashboard mockup */}
                   <div className="space-y-4">
                     {/* Header */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-accent-green" />
+                        <div className="w-3 h-3 rounded-full bg-green-500" />
                         <span className="text-sm text-muted-foreground font-mono">SYSTEM ONLINE</span>
                       </div>
                       <span className="text-xs text-primary font-mono">v2.4.1-beta</span>
@@ -155,12 +123,12 @@ const QuantumDashPage = () => {
 
                     {/* Charts */}
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-secondary/50 rounded-lg p-4 h-32">
+                      <div className="bg-secondary rounded-lg p-4 h-32">
                         <svg viewBox="0 0 100 50" className="w-full h-full">
                           <motion.path
                             d="M 0 40 Q 25 10 50 30 T 100 20"
                             fill="none"
-                            stroke="hsl(187 100% 50%)"
+                            stroke="hsl(217 91% 60%)"
                             strokeWidth="2"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
@@ -168,11 +136,11 @@ const QuantumDashPage = () => {
                           />
                         </svg>
                       </div>
-                      <div className="bg-secondary/50 rounded-lg p-4 h-32 flex items-end justify-around gap-1">
+                      <div className="bg-secondary rounded-lg p-4 h-32 flex items-end justify-around gap-1">
                         {[60, 80, 40, 90, 70, 85].map((h, i) => (
                           <motion.div
                             key={i}
-                            className="w-4 bg-gradient-to-t from-primary to-accent-blue rounded-t"
+                            className="w-4 bg-primary rounded-t"
                             initial={{ height: 0 }}
                             animate={{ height: `${h}%` }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -188,45 +156,21 @@ const QuantumDashPage = () => {
                         { label: 'Queries/sec', value: '8,421' },
                         { label: 'Uptime', value: '99.99%' },
                       ].map((stat) => (
-                        <div key={stat.label} className="bg-secondary/50 rounded-lg p-3 text-center">
-                          <div className="text-lg font-bold gradient-text">{stat.value}</div>
+                        <div key={stat.label} className="bg-secondary rounded-lg p-3 text-center">
+                          <div className="text-lg font-bold text-primary">{stat.value}</div>
                           <div className="text-xs text-muted-foreground">{stat.label}</div>
                         </div>
                       ))}
                     </div>
                   </div>
-
-                  {/* Scan line effect */}
-                  <motion.div
-                    className="absolute inset-0 pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                  >
-                    <motion.div
-                      className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
-                      animate={{ top: ['0%', '100%'] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                    />
-                  </motion.div>
                 </div>
-
-                {/* Floating elements */}
-                <motion.div
-                  className="absolute -top-4 -right-4 w-20 h-20 glass-card p-3 rounded-xl"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <div className="w-full h-full rounded-lg bg-accent-green/20 flex items-center justify-center">
-                    <Check className="w-8 h-8 text-accent-green" />
-                  </div>
-                </motion.div>
               </motion.div>
             </div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="py-24 relative">
+        <section className="py-24 relative bg-secondary/50">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -234,7 +178,7 @@ const QuantumDashPage = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="font-outfit font-bold text-3xl md:text-4xl text-foreground mb-4">
+              <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
                 Everything You Need
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -250,12 +194,12 @@ const QuantumDashPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="glass-card p-6 text-center group hover:bg-card/80 transition-colors"
+                  className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg hover:border-primary/30 transition-all"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <feature.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="font-outfit font-semibold text-foreground mb-2">{feature.title}</h3>
+                  <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </motion.div>
               ))}
@@ -270,9 +214,9 @@ const QuantumDashPage = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="glass-card p-12 text-center glow-cyan"
+              className="bg-card border border-border rounded-2xl p-12 text-center shadow-lg"
             >
-              <h2 className="font-outfit font-bold text-3xl md:text-4xl text-foreground mb-4">
+              <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
                 Ready to See the Future?
               </h2>
               <p className="text-muted-foreground max-w-xl mx-auto mb-8">
@@ -291,9 +235,9 @@ const QuantumDashPage = () => {
 
       {/* Waitlist Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="glass-card border-primary/30">
+        <DialogContent className="bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="font-outfit text-2xl">Join the Waitlist</DialogTitle>
+            <DialogTitle className="text-2xl">Join the Waitlist</DialogTitle>
             <DialogDescription>
               Be the first to know when Quantum Dash launches. Early access members get exclusive features.
             </DialogDescription>
@@ -305,7 +249,7 @@ const QuantumDashPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-secondary/50"
+              className="bg-secondary"
             />
             <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? 'Joining...' : 'Join Waitlist'}
