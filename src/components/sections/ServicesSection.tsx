@@ -49,7 +49,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-24">
+    <section id="services" className="py-16">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
