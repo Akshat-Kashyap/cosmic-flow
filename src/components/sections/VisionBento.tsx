@@ -36,40 +36,40 @@ const values = [
 
 const VisionBento = () => {
   return (
-    <section id="vision" className="py-16 bg-secondary/30">
+    <section id="vision" className="py-12 bg-secondary/20">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl mb-12"
+          className="text-center max-w-2xl mx-auto mb-10"
         >
           <p className="text-sm font-medium text-primary mb-2">Our Vision</p>
-          <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+          <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-3">
             What drives us forward
           </h2>
           <p className="text-muted-foreground">
-            Our core principles guide everything we build and every decision we make.
+            Our core principles guide everything we build.
           </p>
         </motion.div>
 
         {/* Values Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {values.map((value, index) => (
             <motion.div
               key={value.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="p-6 rounded-xl bg-card border border-border"
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="group p-5 rounded-2xl backdrop-blur-sm bg-card/60 border border-border/50 hover:bg-card/80 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-4">
-                <value.icon className="w-5 h-5 text-foreground" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <value.icon className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground mb-2">{value.title}</h3>
-              <p className="text-sm text-muted-foreground">{value.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
             </motion.div>
           ))}
         </div>
