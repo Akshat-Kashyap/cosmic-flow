@@ -20,13 +20,17 @@ const ProductCard = ({ title, description, href, status, icon: Icon, index }: Pr
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ 
+        duration: 0.5, 
+        delay: index * 0.1,
+        ease: [0.22, 1, 0.36, 1]
+      }}
     >
       <Link to={href} className="block group h-full">
-        <div className="h-full p-6 rounded-2xl backdrop-blur-sm bg-card/60 border border-border/50 hover:bg-card/80 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 gradient-border silver-gloss">
+        <div className="h-full p-6 rounded-2xl card-enhanced gradient-border silver-gloss">
           <div className="flex items-start justify-between mb-4">
             {/* Icon */}
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -63,7 +67,7 @@ const ProductShowcase = () => {
       title: 'Assurely KYC',
       description: 'Enterprise-grade identity verification with biometric scanning and global compliance.',
       href: '/products/kyc-suite',
-      status: 'live' as const,
+      status: 'coming-soon' as const,
       icon: Shield,
     },
     {
@@ -90,20 +94,21 @@ const ProductShowcase = () => {
   ];
 
   return (
-    <section id="products" className="py-16">
-      <div className="container mx-auto px-6">
+    <section id="products" className="py-16 section-enhanced">
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-10"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto mb-12"
         >
-          <p className="text-sm font-medium text-primary mb-2">Products</p>
-          <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-3">
+          <p className="text-base font-medium text-primary mb-3">Products</p>
+          <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
             Enterprise-ready solutions
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             A suite of intelligent products designed to transform how enterprises operate.
           </p>
         </motion.div>

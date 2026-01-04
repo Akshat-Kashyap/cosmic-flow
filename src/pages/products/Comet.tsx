@@ -117,13 +117,26 @@ const CometPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <main>
+      <main className="pt-24">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+        <section className="relative min-h-screen flex items-center overflow-hidden hero-pattern">
           {/* Clean background */}
           <div className="absolute inset-0 bg-gradient-to-b from-rose-50/50 to-background" />
 
           <div className="container mx-auto px-6 relative z-10">
+            {/* Back Button - Separated */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+            </motion.div>
+
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Content */}
               <motion.div
@@ -132,14 +145,6 @@ const CometPage = () => {
                 transition={{ duration: 0.6 }}
                 className="max-w-xl"
               >
-                <Link 
-                  to="/" 
-                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors text-sm"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Home
-                </Link>
-
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -153,7 +158,7 @@ const CometPage = () => {
                   <span className="text-xs font-medium text-rose-600">Now Available</span>
                 </motion.div>
 
-                <h1 className="font-semibold text-4xl sm:text-5xl lg:text-6xl text-foreground mb-6 leading-[1.1]">
+                <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl text-foreground mb-6 leading-[1.1]">
                   The Modern HRMS
                   <br />
                   <span className="text-rose-500">
@@ -375,18 +380,19 @@ const CometPage = () => {
         </section>
 
         {/* Features Grid */}
-        <section className="py-24 relative">
-          <div className="container mx-auto px-6">
+        <section className="py-24 relative section-enhanced">
+          <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-center mb-16"
             >
-              <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+              <h2 className="font-bold text-4xl md:text-5xl text-foreground mb-4">
                 Everything Your Team Needs
               </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
                 A complete HR platform that brings your people together and helps them thrive.
               </p>
             </motion.div>
@@ -395,16 +401,20 @@ const CometPage = () => {
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-rose-200 transition-all ${
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.05,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className={`card-enhanced gradient-border silver-gloss rounded-xl p-6 ${
                     feature.highlight ? 'md:col-span-2 lg:col-span-1' : ''
                   }`}
                 >
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                    feature.highlight ? 'bg-rose-500' : 'bg-rose-50'
+                    feature.highlight ? 'bg-rose-500' : 'bg-gradient-to-br from-rose-100 to-rose-50 border border-rose-200'
                   }`}>
                     <feature.icon className={`w-6 h-6 ${feature.highlight ? 'text-white' : 'text-rose-500'}`} />
                   </div>
