@@ -13,7 +13,7 @@ const logos = [
 
 const HeroSection = () => {
   return (
-    <section className="relative flex items-center pt-32 pb-16">
+    <section className="relative flex items-center pt-28 pb-12">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
@@ -51,7 +51,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-3 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-3 justify-center"
           >
             <Link to="/#products">
               <Button size="lg" className="w-full sm:w-auto">
@@ -64,32 +64,6 @@ const HeroSection = () => {
                 Talk to Sales
               </Button>
             </Link>
-          </motion.div>
-
-          {/* Trust Logos */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <p className="text-xs text-muted-foreground mb-4 uppercase tracking-wider">
-              Trusted by leading companies
-            </p>
-            <div className="flex items-center justify-center gap-6">
-              {logos.map((logo, index) => (
-                <motion.div
-                  key={logo.name}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                  className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center"
-                >
-                  <span className="text-sm font-semibold text-muted-foreground">
-                    {logo.initial}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>
