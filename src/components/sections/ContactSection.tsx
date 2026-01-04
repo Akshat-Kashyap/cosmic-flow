@@ -36,13 +36,13 @@ const ContactSection = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'contact@agaami.ai' },
-    { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-    { icon: MapPin, label: 'Location', value: 'San Francisco, CA' },
+    { icon: Mail, label: 'Email', value: 'agaamiailabs@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '+91 8310530325' },
+    { icon: MapPin, label: 'Location', value: 'Mumbai, Maharashtra, India' },
   ];
 
   return (
-    <section id="contact" className="py-12">
+    <section id="contact" className="py-16">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left - Info */}

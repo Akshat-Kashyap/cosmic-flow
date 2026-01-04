@@ -13,7 +13,7 @@ const logos = [
 
 const HeroSection = () => {
   return (
-    <section className="relative flex items-center pt-28 pb-12">
+    <section className="relative flex items-center pt-32 pb-16 hero-pattern">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div

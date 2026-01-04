@@ -26,7 +26,7 @@ const ProductCard = ({ title, description, href, status, icon: Icon, index }: Pr
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
       <Link to={href} className="block group h-full">
-        <div className="h-full p-6 rounded-2xl backdrop-blur-sm bg-card/60 border border-border/50 hover:bg-card/80 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300">
+        <div className="h-full p-6 rounded-2xl backdrop-blur-sm bg-card/60 border border-border/50 hover:bg-card/80 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 gradient-border silver-gloss">
           <div className="flex items-start justify-between mb-4">
             {/* Icon */}
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -90,7 +90,7 @@ const ProductShowcase = () => {
   ];
 
   return (
-    <section id="products" className="py-12">
+    <section id="products" className="py-16">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div

@@ -49,7 +49,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-12">
+    <section id="services" className="py-16">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -76,7 +76,7 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group p-5 rounded-2xl backdrop-blur-sm bg-card/60 border border-border/50 hover:bg-card/80 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300"
+              className="group p-5 rounded-2xl backdrop-blur-sm bg-card/60 border border-border/50 hover:bg-card/80 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 gradient-border silver-gloss"
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 <service.icon className="w-5 h-5 text-primary" />
