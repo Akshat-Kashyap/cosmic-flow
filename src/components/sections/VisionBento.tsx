@@ -36,7 +36,7 @@ const values = [
 
 const VisionBento = () => {
   return (
-    <section id="vision" className="py-24 bg-secondary/30">
+    <section id="vision" className="py-16 bg-secondary/30">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
