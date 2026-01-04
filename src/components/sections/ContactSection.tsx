@@ -42,46 +42,62 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-16">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-16 section-enhanced">
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
+          <p className="text-base font-medium text-primary mb-3">Contact</p>
+          <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
+            Let's build together
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Ready to transform your business with intelligent technology? Get in touch and let's discuss how we can help.
+          </p>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left - Info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-sm font-medium text-primary mb-2">Contact</p>
-            <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
-              Let's build together
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-md">
-              Ready to transform your business with intelligent technology? 
-              Get in touch and let's discuss how we can help.
-            </p>
-
             <div className="space-y-4">
-              {contactInfo.map((item) => (
-                <div key={item.label} className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-foreground" />
+              {contactInfo.map((item, index) => (
+                <motion.div 
+                  key={item.label} 
+                  className="flex items-center gap-4 p-4 rounded-xl card-enhanced gradient-border silver-gloss"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.4 }}
+                >
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">{item.label}</p>
                     <p className="font-medium text-foreground">{item.value}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
           {/* Right - Form */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="p-6 rounded-xl bg-card border border-border"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="p-6 rounded-xl card-enhanced gradient-border"
           >
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">

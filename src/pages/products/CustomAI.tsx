@@ -64,11 +64,24 @@ const CustomAIPage = () => {
       
       <main className="pt-24">
         {/* Hero Section */}
-        <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+        <section className="relative min-h-[80vh] flex items-center overflow-hidden hero-pattern">
           {/* Clean background */}
           <div className="absolute inset-0 bg-gradient-to-b from-violet-50/50 to-background" />
 
           <div className="container mx-auto px-6 relative z-10">
+            {/* Back Button - Separated */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+            </motion.div>
+
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Content */}
               <motion.div
@@ -76,17 +89,12 @@ const CustomAIPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors">
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Home
-                </Link>
-
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 mb-6">
                   <Brain className="w-4 h-4 text-violet-600" />
                   <span className="text-sm font-medium text-violet-600">Enterprise AI Solutions</span>
                 </div>
 
-                <h1 className="font-semibold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6">
+                <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6">
                   <span className="gradient-text-purple">Custom</span>
                   <br />
                   AI
@@ -143,18 +151,19 @@ const CustomAIPage = () => {
         </section>
 
         {/* Capabilities */}
-        <section className="py-24 relative bg-secondary/50">
-          <div className="container mx-auto px-6">
+        <section className="py-24 relative section-enhanced">
+          <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-center mb-16"
             >
-              <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+              <h2 className="font-bold text-4xl md:text-5xl text-foreground mb-4">
                 Our <span className="text-violet-600">Capabilities</span>
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 End-to-end AI solutions tailored to your specific business needs.
               </p>
             </motion.div>
@@ -163,14 +172,18 @@ const CustomAIPage = () => {
               {capabilities.map((cap, index) => (
                 <motion.div
                   key={cap.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card border border-border rounded-xl p-8 hover:shadow-lg hover:border-violet-200 transition-all"
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.1,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="card-enhanced gradient-border silver-gloss rounded-xl p-8"
                 >
                   <div className="flex items-start gap-6">
-                    <div className="w-14 h-14 rounded-2xl bg-violet-50 flex items-center justify-center shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-100 to-violet-50 border border-violet-200 flex items-center justify-center shrink-0">
                       <cap.icon className="w-7 h-7 text-violet-600" />
                     </div>
                     <div>
@@ -191,14 +204,14 @@ const CustomAIPage = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-card border border-border rounded-2xl p-12 shadow-lg"
+              className="card-enhanced gradient-border rounded-2xl p-12"
             >
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="font-semibold text-3xl text-foreground mb-6">
+                  <h2 className="font-bold text-4xl text-foreground mb-6">
                     Enterprise-Grade AI Development
                   </h2>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-lg text-muted-foreground mb-6">
                     We work closely with your team to understand your unique challenges 
                     and build AI solutions that integrate seamlessly with your existing systems.
                   </p>

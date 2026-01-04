@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Fingerprint, FileCheck, Globe, Shield, Lock, Zap } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Fingerprint, FileCheck, Globe, Shield, Lock, Zap, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -64,11 +64,24 @@ const AssurelyPage = () => {
       
       <main className="pt-24">
         {/* Hero Section */}
-        <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+        <section className="relative min-h-[80vh] flex items-center overflow-hidden hero-pattern">
           {/* Clean background */}
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 to-background" />
 
           <div className="container mx-auto px-6 relative z-10">
+            {/* Back Button - Separated */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+            </motion.div>
+
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Content */}
               <motion.div
@@ -76,17 +89,12 @@ const AssurelyPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors">
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Home
-                </Link>
-
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
-                  <Shield className="w-4 h-4 text-emerald-600" />
-                  <span className="text-sm font-medium text-emerald-600">Enterprise Ready</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border mb-6">
+                  <Clock className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-muted-foreground">Coming Soon</span>
                 </div>
 
-                <h1 className="font-semibold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6">
+                <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6">
                   <span className="gradient-text-green">Assurely</span>
                   <br />
                   KYC Suite
@@ -128,18 +136,19 @@ const AssurelyPage = () => {
         </section>
 
         {/* 3-Step Process */}
-        <section className="py-24 relative bg-secondary/50">
-          <div className="container mx-auto px-6">
+        <section className="py-24 relative section-enhanced">
+          <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-center mb-16"
             >
-              <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
+              <h2 className="font-bold text-4xl md:text-5xl text-foreground mb-4">
                 Three Steps to <span className="text-emerald-600">Trust</span>
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Verify identities in seconds with our streamlined process.
               </p>
             </motion.div>
@@ -148,10 +157,14 @@ const AssurelyPage = () => {
               {steps.map((step, index) => (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.2,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
                   className="relative"
                 >
                   {/* Connector line */}
@@ -159,11 +172,11 @@ const AssurelyPage = () => {
                     <div className="hidden md:block absolute top-16 left-1/2 w-full h-px bg-emerald-200" />
                   )}
                   
-                  <div className="bg-card border border-border rounded-xl p-8 text-center relative">
+                  <div className="card-enhanced gradient-border silver-gloss rounded-xl p-8 text-center relative">
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm">
                       {index + 1}
                     </div>
-                    <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto mb-6 mt-4">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-6 mt-4">
                       <step.icon className="w-8 h-8 text-emerald-600" />
                     </div>
                     <h3 className="font-semibold text-xl text-foreground mb-3">{step.title}</h3>
@@ -182,13 +195,19 @@ const AssurelyPage = () => {
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-emerald-200 transition-all"
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.1,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="card-enhanced gradient-border silver-gloss rounded-xl p-6"
                 >
-                  <feature.icon className="w-10 h-10 text-emerald-600 mb-4" />
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-50 border border-emerald-200 flex items-center justify-center mb-4">
+                    <feature.icon className="w-5 h-5 text-emerald-600" />
+                  </div>
                   <h3 className="font-semibold text-lg text-foreground mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </motion.div>
