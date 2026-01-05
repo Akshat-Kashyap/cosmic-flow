@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BarChart3, Shield, Brain, Package, Users } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { PRODUCTS } from '@/constants';
 
 interface ProductCardProps {
   title: string;
@@ -55,44 +56,6 @@ const ProductCard = ({ title, description, href, status, icon: Icon, index }: Pr
 };
 
 const ProductShowcase = () => {
-  const products = [
-    {
-      title: 'Quantum Dash',
-      description: 'Real-time analytics dashboard with AI-powered insights and beautiful visualizations.',
-      href: '/products/quantumdash',
-      status: 'beta' as const,
-      icon: BarChart3,
-    },
-    {
-      title: 'Assurely KYC',
-      description: 'Enterprise-grade identity verification with biometric scanning and global compliance.',
-      href: '/products/kyc-suite',
-      status: 'coming-soon' as const,
-      icon: Shield,
-    },
-    {
-      title: 'Custom AI',
-      description: 'Bespoke AI solutions tailored to your enterprise needs with on-premise deployment.',
-      href: '/products/custom-ai',
-      status: 'live' as const,
-      icon: Brain,
-    },
-    {
-      title: 'Stock-Flow',
-      description: 'Intelligent supply chain and inventory management powered by predictive AI.',
-      href: '/products/stock-flow',
-      status: 'coming-soon' as const,
-      icon: Package,
-    },
-    {
-      title: 'Comet HRMS',
-      description: 'Modern HR platform with AI assistant, smart analytics, and seamless team management.',
-      href: '/products/comet',
-      status: 'live' as const,
-      icon: Users,
-    },
-  ];
-
   return (
     <section id="products" className="py-24 section-enhanced">
       <div className="container mx-auto px-6 relative z-10">
@@ -115,13 +78,13 @@ const ProductShowcase = () => {
 
         {/* Products Grid - 3 columns symmetric */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {products.slice(0, 3).map((product, index) => (
+          {PRODUCTS.slice(0, 3).map((product, index) => (
             <ProductCard key={product.title} {...product} index={index} />
           ))}
         </div>
         {/* Bottom row centered */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5 max-w-2xl mx-auto lg:max-w-none lg:grid-cols-2 lg:px-[16.67%]">
-          {products.slice(3).map((product, index) => (
+          {PRODUCTS.slice(3).map((product, index) => (
             <ProductCard key={product.title} {...product} index={index + 3} />
           ))}
         </div>

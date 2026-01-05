@@ -14,6 +14,17 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
+import { API_URL } from '@/constants';
+import {
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 const features = [
   {
@@ -38,6 +49,38 @@ const features = [
   },
 ];
 
+// Sample data for charts
+const areaChartData = [
+  { name: 'Jan', value: 400 },
+  { name: 'Feb', value: 300 },
+  { name: 'Mar', value: 600 },
+  { name: 'Apr', value: 450 },
+  { name: 'May', value: 700 },
+  { name: 'Jun', value: 550 },
+  { name: 'Jul', value: 800 },
+];
+
+const barChartData = [
+  { name: 'A', value: 60 },
+  { name: 'B', value: 80 },
+  { name: 'C', value: 40 },
+  { name: 'D', value: 90 },
+  { name: 'E', value: 70 },
+  { name: 'F', value: 85 },
+];
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-card border border-border rounded-lg px-3 py-2 shadow-lg">
+        <p className="text-xs text-muted-foreground">{label}</p>
+        <p className="text-sm font-semibold text-primary">{payload[0].value}</p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const QuantumDashPage = () => {
   const { toast } = useToast();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,14 +90,37 @@ const QuantumDashPage = () => {
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    toast({
-      title: "You're on the list!",
-      description: "We'll notify you when Quantum Dash is ready.",
-    });
-    setEmail('');
-    setIsModalOpen(false);
-    setIsSubmitting(false);
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          formType: "QuantumDash Waitlist",
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit");
+      }
+
+      toast({
+        title: "You're on the list!",
+        description: "We'll notify you when Quantum Dash is ready.",
+      });
+      setEmail('');
+      setIsModalOpen(false);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -65,7 +131,7 @@ const QuantumDashPage = () => {
         {/* Hero Section */}
         <section className="relative min-h-[80vh] flex items-center overflow-hidden hero-pattern">
           {/* Clean background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-background" />
 
           <div className="container mx-auto px-6 relative z-10">
             {/* Back Button - Separated */}
@@ -110,7 +176,7 @@ const QuantumDashPage = () => {
                 </Button>
               </motion.div>
 
-              {/* Right - Dashboard Visual */}
+              {/* Right - Dashboard Visual with Recharts */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -123,37 +189,48 @@ const QuantumDashPage = () => {
                     {/* Header */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-green-500" />
+                        <div className="w-3 h-3 rounded-full bg-accent-green" />
                         <span className="text-sm text-muted-foreground font-mono">SYSTEM ONLINE</span>
                       </div>
                       <span className="text-xs text-primary font-mono">v2.4.1-beta</span>
                     </div>
 
-                    {/* Charts */}
+                    {/* Charts with Recharts */}
                     <div className="grid grid-cols-2 gap-4">
+                      {/* Area Chart */}
                       <div className="bg-secondary rounded-lg p-4 h-32">
-                        <svg viewBox="0 0 100 50" className="w-full h-full">
-                          <motion.path
-                            d="M 0 40 Q 25 10 50 30 T 100 20"
-                            fill="none"
-                            stroke="hsl(217 91% 60%)"
-                            strokeWidth="2"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: 1 }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          />
-                        </svg>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <AreaChart data={areaChartData}>
+                            <defs>
+                              <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(217 91% 60%)" stopOpacity={0.3}/>
+                                <stop offset="95%" stopColor="hsl(217 91% 60%)" stopOpacity={0}/>
+                              </linearGradient>
+                            </defs>
+                            <Tooltip content={<CustomTooltip />} />
+                            <Area 
+                              type="monotone" 
+                              dataKey="value" 
+                              stroke="hsl(217 91% 60%)" 
+                              strokeWidth={2}
+                              fill="url(#colorValue)" 
+                            />
+                          </AreaChart>
+                        </ResponsiveContainer>
                       </div>
-                      <div className="bg-secondary rounded-lg p-4 h-32 flex items-end justify-around gap-1">
-                        {[60, 80, 40, 90, 70, 85].map((h, i) => (
-                          <motion.div
-                            key={i}
-                            className="w-4 bg-primary rounded-t"
-                            initial={{ height: 0 }}
-                            animate={{ height: `${h}%` }}
-                            transition={{ duration: 0.5, delay: i * 0.1 }}
-                          />
-                        ))}
+                      
+                      {/* Bar Chart */}
+                      <div className="bg-secondary rounded-lg p-4 h-32">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={barChartData}>
+                            <Tooltip content={<CustomTooltip />} />
+                            <Bar 
+                              dataKey="value" 
+                              fill="hsl(217 91% 60%)" 
+                              radius={[4, 4, 0, 0]}
+                            />
+                          </BarChart>
+                        </ResponsiveContainer>
                       </div>
                     </div>
 
