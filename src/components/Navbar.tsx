@@ -18,6 +18,14 @@ const Navbar = () => {
   const location = useLocation();
   const { theme, setTheme } = useTheme();
 
+  const toggleTheme = () => {
+    document.documentElement.classList.add('transitioning');
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTimeout(() => {
+      document.documentElement.classList.remove('transitioning');
+    }, 300);
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -87,7 +95,7 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={toggleTheme}
                 className="text-muted-foreground"
               >
                 {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
@@ -148,7 +156,7 @@ const Navbar = () => {
                     {mounted && (
                       <Button
                         variant="outline"
-                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                        onClick={toggleTheme}
                         className="w-full flex items-center gap-2"
                       >
                         {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}

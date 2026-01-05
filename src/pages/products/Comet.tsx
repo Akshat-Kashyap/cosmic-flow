@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { useToast } from '@/hooks/use-toast';
 
 const features = [
@@ -80,6 +81,11 @@ const CometPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Comet HRMS - Human Resource Management" 
+        description="Modern HRMS built for growth. AI-powered attendance, performance tracking, and team collaboration tools."
+        ogImage="/og-comet.png"
+      />
       <Navbar />
       
       <main className="pt-24">

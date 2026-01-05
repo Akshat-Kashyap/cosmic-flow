@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { useToast } from '@/hooks/use-toast';
 
 const capabilities = [
@@ -60,6 +61,11 @@ const CustomAIPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Custom AI Solutions" 
+        description="Bespoke enterprise AI solutions. Fine-tuned LLMs, autonomous agents, and on-premise deployments tailored to your business."
+        ogImage="/og-customai.png"
+      />
       <Navbar />
       
       <main className="pt-24">

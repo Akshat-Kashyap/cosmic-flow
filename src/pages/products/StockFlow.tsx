@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 
 const stats = [
   { label: 'Target Launch', value: 'Q1 2025', icon: Clock },
@@ -32,6 +33,11 @@ const features = [
 const StockFlowPage = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="StockFlow - Inventory Management" 
+        description="AI-powered inventory management. Intelligent routing, demand prediction, and real-time supply chain analytics."
+        ogImage="/og-stockflow.png"
+      />
       <Navbar />
       
       <main className="pt-24">
