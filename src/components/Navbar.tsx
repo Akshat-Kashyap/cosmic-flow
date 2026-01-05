@@ -1,20 +1,26 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { name: 'Products', href: '/#products' },
   { name: 'Vision', href: '/#vision' },
   { name: 'Services', href: '/#services' },
-  { name: 'Roadmap', href: '/#roadmap' },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,6 +83,16 @@ const Navbar = () => {
                 Blog
               </Button>
             </Link>
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="text-muted-foreground"
+              >
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              </Button>
+            )}
             <Link to="/#contact" onClick={() => handleNavClick('/#contact')}>
               <Button size="sm">
                 Contact Us
@@ -129,6 +145,16 @@ const Navbar = () => {
                         Blog
                       </Button>
                     </Link>
+                    {mounted && (
+                      <Button
+                        variant="outline"
+                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                        className="w-full flex items-center gap-2"
+                      >
+                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                        {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                      </Button>
+                    )}
                     <Link to="/#contact" onClick={() => handleNavClick('/#contact')}>
                       <Button className="w-full">
                         Contact Us
