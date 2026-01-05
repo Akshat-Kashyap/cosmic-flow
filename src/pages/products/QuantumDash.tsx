@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { useToast } from '@/hooks/use-toast';
 import { API_URL } from '@/constants';
 import {
@@ -125,6 +126,11 @@ const QuantumDashPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="QuantumDash - Real-time Analytics" 
+        description="Real-time analytics platform with AI-powered insights. Transform your business data into actionable intelligence."
+        ogImage="/og-quantumdash.png"
+      />
       <Navbar />
       
       <main className="pt-24">

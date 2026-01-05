@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { useToast } from '@/hooks/use-toast';
 
 const steps = [
@@ -60,6 +61,11 @@ const AssurelyPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Assurely KYC - Identity Verification" 
+        description="Enterprise-grade KYC identity verification. Advanced biometric scanning and document verification for secure onboarding."
+        ogImage="/og-assurely.png"
+      />
       <Navbar />
       
       <main className="pt-24">
