@@ -53,4 +53,4 @@ export const CONTACT_INFO = [
 export const API_URL = "INSERT_API_URL_HERE";
 
 // Booking URL - Replace with your actual Calendly/Cal.com link
-export const BOOKING_URL = "https://cal.com/agaami/demo";
+export const BOOKING_URL = "https://cal.com/agaami-ai-labs-ig5z28/15min";
