@@ -36,7 +36,7 @@ const values = [
 
 const VisionBento = () => {
   return (
-    <section id="vision" className="py-32 section-enhanced">
+    <section id="vision" className="py-24 section-enhanced">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -47,7 +47,7 @@ const VisionBento = () => {
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <p className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-wide uppercase">Our Vision</p>
-          <h2 className="font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-4">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
             What drives us forward
           </h2>
           <p className="text-lg text-muted-foreground">
