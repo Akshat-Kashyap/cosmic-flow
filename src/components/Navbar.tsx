@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo.jpeg';
 
 const navLinks = [
   { name: 'Products', href: '/#products' },
@@ -62,9 +63,7 @@ const Navbar = () => {
         <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="font-semibold text-primary-foreground text-sm">A</span>
-            </div>
+            <img src={logo} alt="Agaami" className="w-8 h-8 rounded-lg object-cover" />
             <span className="font-semibold text-lg text-foreground">
               Agaami
             </span>
