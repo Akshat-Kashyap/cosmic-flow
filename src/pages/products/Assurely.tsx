@@ -173,10 +173,7 @@ const AssurelyPage = () => {
                   )}
                   
                   <div className="card-enhanced gradient-border silver-gloss rounded-xl p-8 text-center relative">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm">
-                      {index + 1}
-                    </div>
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-6 mt-4">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-6">
                       <step.icon className="w-8 h-8 text-emerald-600" />
                     </div>
                     <h3 className="font-semibold text-xl text-foreground mb-3">{step.title}</h3>
