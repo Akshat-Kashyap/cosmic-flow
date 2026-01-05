@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   ArrowLeft, ArrowRight, Users, Clock, BarChart3, 
   Brain, Shield, Calendar, MessageSquare,
-  CheckCircle2, Star, Play, Zap, TrendingUp, UserCheck,
+  CheckCircle2, Play, Zap, TrendingUp, UserCheck,
   Award
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -57,41 +57,6 @@ const features = [
     description: 'Continuous feedback loops and goal tracking made simple.',
     highlight: false,
   },
-];
-
-const stats = [
-  { value: '500+', label: 'Companies' },
-  { value: '50K+', label: 'Employees Managed' },
-  { value: '99.9%', label: 'Uptime' },
-  { value: '4.9/5', label: 'Rating' },
-];
-
-const testimonials = [
-  {
-    quote: "Comet transformed how we manage our distributed team. The AI assistant alone saves us 20+ hours per week.",
-    author: "Sarah Chen",
-    role: "VP of People",
-    company: "TechFlow Inc",
-    avatar: "SC",
-  },
-  {
-    quote: "Finally, an HRMS that our employees actually enjoy using. The interface is intuitive and the analytics are game-changing.",
-    author: "Marcus Johnson",
-    role: "HR Director",
-    company: "ScaleUp Labs",
-    avatar: "MJ",
-  },
-  {
-    quote: "Implementation took 2 weeks instead of the 3 months we expected. The Comet team's support was exceptional.",
-    author: "Emily Rodriguez",
-    role: "COO",
-    company: "GrowthPath",
-    avatar: "ER",
-  },
-];
-
-const logos = [
-  'TechCorp', 'Innovate.io', 'ScaleUp', 'DataFlow', 'CloudSync', 'NextGen'
 ];
 
 const CometPage = () => {
@@ -332,50 +297,6 @@ const CometPage = () => {
                 </motion.div>
               </motion.div>
             </div>
-
-            {/* Stats Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-border"
-            >
-              {stats.map((stat, i) => (
-                <div key={stat.label} className="text-center">
-                  <motion.p 
-                    className="text-3xl font-bold text-foreground"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6 + i * 0.1 }}
-                  >
-                    {stat.value}
-                  </motion.p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Social Proof - Logo Bar */}
-        <section className="py-16 border-y border-border bg-secondary/50">
-          <div className="container mx-auto px-6">
-            <p className="text-center text-sm text-muted-foreground mb-8">
-              Trusted by forward-thinking teams worldwide
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-              {logos.map((logo) => (
-                <motion.div
-                  key={logo}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors"
-                >
-                  {logo}
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -508,54 +429,6 @@ const CometPage = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-24">
-          <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="font-semibold text-3xl md:text-4xl text-foreground mb-4">
-                Loved by HR Teams
-              </h2>
-              <p className="text-muted-foreground">
-                See what our customers have to say about Comet.
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.author}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card border border-border rounded-xl p-6"
-                >
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-foreground mb-6">"{testimonial.quote}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-rose-500 flex items-center justify-center">
-                      <span className="text-white text-sm font-medium">{testimonial.avatar}</span>
-                    </div>
-                    <div>
-                      <p className="font-medium text-foreground text-sm">{testimonial.author}</p>
-                      <p className="text-xs text-muted-foreground">{testimonial.role}, {testimonial.company}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA */}
         <section className="py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
@@ -569,8 +442,8 @@ const CometPage = () => {
                 Ready to Transform Your HR?
               </h2>
               <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-                Join 500+ companies already using Comet to build better workplaces.
-                Start your free trial today.
+                Transform your HR operations with Comet today.
+                Start your free trial now.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" className="bg-rose-500 hover:bg-rose-600" onClick={() => setIsModalOpen(true)}>
