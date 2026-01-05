@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/logo.jpeg';
+import logo from '@/assets/logo.ico';
 
 const navLinks = [
   { name: 'Products', href: '/#products' },
