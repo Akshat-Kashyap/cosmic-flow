@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { CONTACT_INFO, API_URL } from "@/constants";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -20,27 +21,40 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          formType: "General Contact",
+          submittedAt: new Date().toISOString(),
+        }),
+      });
 
-    toast({
-      title: "Message sent",
-      description: "We'll get back to you within 24 hours.",
-    });
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
 
-    setFormData({ name: "", email: "", company: "", message: "" });
-    setIsSubmitting(false);
+      toast({
+        title: "Message sent",
+        description: "We'll get back to you within 24 hours.",
+      });
+      setFormData({ name: "", email: "", company: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  const contactInfo = [
-    { icon: Mail, label: "Email", value: "agaamiailabs@gmail.com" },
-    { icon: Phone, label: "Phone", value: "+91 8310530325" },
-    { icon: Phone, label: "Phone", value: "+91 7007241423" },
-    { icon: MapPin, label: "Location", value: "Mumbai, Maharashtra, India" },
-  ];
 
   return (
     <section id="contact" className="py-28 section-enhanced">
@@ -70,9 +84,9 @@ const ContactSection = () => {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="space-y-4">
-              {contactInfo.map((item, index) => (
+              {CONTACT_INFO.map((item, index) => (
                 <motion.div
-                  key={item.label}
+                  key={`${item.label}-${index}`}
                   className="flex items-center gap-4 p-4 rounded-xl card-enhanced gradient-border silver-gloss"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
