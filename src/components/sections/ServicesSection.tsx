@@ -49,7 +49,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-22 section-enhanced">
+    <section id="services" className="py-32 section-enhanced">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -59,7 +59,7 @@ const ServicesSection = () => {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <p className="text-base font-medium text-primary mb-3">Services</p>
+          <p className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-wide uppercase">Services</p>
           <h2 className="font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-4">
             What we offer
           </h2>
