@@ -1,49 +1,49 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, Mail, MapPin, Phone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: '',
+    name: "",
+    email: "",
+    company: "",
+    message: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     toast({
       title: "Message sent",
       description: "We'll get back to you within 24 hours.",
     });
-    
-    setFormData({ name: '', email: '', company: '', message: '' });
+
+    setFormData({ name: "", email: "", company: "", message: "" });
     setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'agaamiailabs@gmail.com' },
-    { icon: Phone, label: 'Phone', value: '+91 8310530325' },
-    { icon: Phone, label: 'Phone', value: '+91 7007241423' },
-    { icon: MapPin, label: 'Location', value: 'Mumbai, Maharashtra, India' },
+    { icon: Mail, label: "Email", value: "agaamiailabs@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+91 8310530325" },
+    { icon: Phone, label: "Phone", value: "+91 7007241423" },
+    { icon: MapPin, label: "Location", value: "Mumbai, Maharashtra, India" },
   ];
 
   return (
-    <section id="contact" className="py-32 section-enhanced">
+    <section id="contact" className="py-28 section-enhanced">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -54,11 +54,10 @@ const ContactSection = () => {
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <p className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-wide uppercase">Contact</p>
-          <h2 className="font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-4">
-            Let's build together
-          </h2>
+          <h2 className="font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-4">Let's build together</h2>
           <p className="text-lg text-muted-foreground">
-            Ready to transform your business with intelligent technology? Get in touch and let's discuss how we can help.
+            Ready to transform your business with intelligent technology? Get in touch and let's discuss how we can
+            help.
           </p>
         </motion.div>
 
@@ -72,8 +71,8 @@ const ContactSection = () => {
           >
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
-                <motion.div 
-                  key={item.label} 
+                <motion.div
+                  key={item.label}
                   className="flex items-center gap-4 p-4 rounded-xl card-enhanced gradient-border silver-gloss"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -165,7 +164,7 @@ const ContactSection = () => {
 
               <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? (
-                  'Sending...'
+                  "Sending..."
                 ) : (
                   <>
                     Send Message
