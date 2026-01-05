@@ -6,10 +6,15 @@ import ServicesSection from '@/components/sections/ServicesSection';
 import VisionBento from '@/components/sections/VisionBento';
 import FAQSection from '@/components/sections/FAQSection';
 import ContactSection from '@/components/sections/ContactSection';
+import SEOHead from '@/components/SEOHead';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Enterprise Intelligence Solutions"
+        description="Agaami AI Labs builds intelligent enterprise systems. From real-time analytics to identity verification, we help businesses scale securely with AI-powered solutions."
+      />
       <Navbar />
       
       <main>

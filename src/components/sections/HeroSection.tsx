@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { BOOKING_URL } from '@/constants';
 
 const HeroSection = () => {
   const scrollToProducts = () => {
@@ -62,11 +63,32 @@ const HeroSection = () => {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link to="/#contact">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                Talk to Sales
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="w-full sm:w-auto group"
+              onClick={() => window.open(BOOKING_URL, '_blank')}
+            >
+              <Calendar className="w-4 h-4 mr-2 group-hover:text-primary transition-colors" />
+              Book a Demo
+            </Button>
+          </motion.div>
+
+          {/* Trusted By Strip */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-12 pt-8 border-t border-border/50"
+          >
+            <p className="text-xs text-muted-foreground mb-4">Built with enterprise standards</p>
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-muted-foreground/60">
+              <span className="text-xs font-medium">React</span>
+              <span className="text-xs font-medium">TypeScript</span>
+              <span className="text-xs font-medium">Tailwind CSS</span>
+              <span className="text-xs font-medium">PostgreSQL</span>
+              <span className="text-xs font-medium">AWS</span>
+            </div>
           </motion.div>
         </div>
       </div>

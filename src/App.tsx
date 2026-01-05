@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollProgress from "./components/ScrollProgress";
 import LoadingScreen from "./components/LoadingScreen";
+import CookieConsent from "./components/CookieConsent";
+import BackToTop from "./components/BackToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
@@ -44,6 +46,8 @@ const App = () => {
         <BrowserRouter>
           <ScrollProgress />
           <ScrollToTop />
+          <CookieConsent />
+          <BackToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<Blog />} />
