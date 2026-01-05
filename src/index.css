@@ -284,6 +284,51 @@
   }
 }
 
+  /* 3D Glossy Navbar */
+  .navbar-3d-glossy {
+    background: linear-gradient(135deg, 
+      hsl(var(--background) / 0.85) 0%, 
+      hsl(var(--background) / 0.75) 50%, 
+      hsl(var(--background) / 0.85) 100%);
+    border-bottom: 1px solid hsl(var(--border) / 0.4);
+    box-shadow: 
+      0 4px 20px hsl(var(--foreground) / 0.08),
+      0 1px 3px hsl(var(--foreground) / 0.04),
+      inset 0 1px 0 hsl(var(--background) / 0.9),
+      inset 0 -1px 0 hsl(var(--foreground) / 0.03);
+    backdrop-filter: blur(20px);
+    position: relative;
+  }
+
+  .navbar-3d-glossy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, 
+      hsl(var(--background) / 0.5) 0%, 
+      transparent 100%);
+    pointer-events: none;
+  }
+
+  /* 3D Floating Block */
+  .floating-block {
+    background: linear-gradient(145deg,
+      hsl(var(--primary) / 0.08) 0%,
+      hsl(var(--primary) / 0.03) 100%);
+    border: 1px solid hsl(var(--primary) / 0.15);
+    box-shadow: 
+      0 10px 40px hsl(var(--primary) / 0.1),
+      0 4px 12px hsl(var(--foreground) / 0.03),
+      inset 0 1px 0 hsl(var(--background) / 0.6),
+      inset 0 -1px 0 hsl(var(--foreground) / 0.02);
+    backdrop-filter: blur(8px);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
 @layer utilities {
   /* Animation delays */
   .animation-delay-200 { animation-delay: 200ms; }
