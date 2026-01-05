@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,27 +5,44 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { CONTACT_INFO, API_URL } from "@/constants";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
+  email: z.string().email("Please enter a valid email address").max(255, "Email is too long"),
+  company: z.string().max(100, "Company name is too long").optional(),
+  message: z.string().min(10, "Message must be at least 10 characters").max(1000, "Message is too long"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactSection = () => {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
+  
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      message: "",
+    },
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
+  const onSubmit = async (data: ContactFormData) => {
     try {
       const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...formData,
+          ...data,
           formType: "General Contact",
           submittedAt: new Date().toISOString(),
         }),
@@ -40,20 +56,14 @@ const ContactSection = () => {
         title: "Message sent",
         description: "We'll get back to you within 24 hours.",
       });
-      setFormData({ name: "", email: "", company: "", message: "" });
+      reset();
     } catch (error) {
       toast({
         title: "Error",
         description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -113,7 +123,7 @@ const ContactSection = () => {
             transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="p-6 rounded-xl card-enhanced gradient-border"
           >
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -121,13 +131,13 @@ const ContactSection = () => {
                   </label>
                   <Input
                     id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    {...register("name")}
                     placeholder="John Doe"
-                    required
                     className="bg-secondary/50 border-border"
                   />
+                  {errors.name && (
+                    <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
@@ -135,14 +145,14 @@ const ContactSection = () => {
                   </label>
                   <Input
                     id="email"
-                    name="email"
                     type="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    {...register("email")}
                     placeholder="john@company.com"
-                    required
                     className="bg-secondary/50 border-border"
                   />
+                  {errors.email && (
+                    <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -152,12 +162,13 @@ const ContactSection = () => {
                 </label>
                 <Input
                   id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
+                  {...register("company")}
                   placeholder="Acme Inc."
                   className="bg-secondary/50 border-border"
                 />
+                {errors.company && (
+                  <p className="text-sm text-destructive mt-1">{errors.company.message}</p>
+                )}
               </div>
 
               <div>
@@ -166,14 +177,14 @@ const ContactSection = () => {
                 </label>
                 <Textarea
                   id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
+                  {...register("message")}
                   placeholder="Tell us about your project..."
                   rows={4}
-                  required
                   className="bg-secondary/50 border-border resize-none"
                 />
+                {errors.message && (
+                  <p className="text-sm text-destructive mt-1">{errors.message.message}</p>
+                )}
               </div>
 
               <Button type="submit" className="w-full" disabled={isSubmitting}>

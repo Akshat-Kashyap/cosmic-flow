@@ -1,7 +1,9 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/sections/HeroSection';
+import TechStackSection from '@/components/sections/TechStackSection';
 import ProductShowcase from '@/components/sections/ProductShowcase';
+import ProcessSection from '@/components/sections/ProcessSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import VisionBento from '@/components/sections/VisionBento';
 import FAQSection from '@/components/sections/FAQSection';
@@ -19,7 +21,9 @@ const Index = () => {
       
       <main>
         <HeroSection />
+        <TechStackSection />
         <ProductShowcase />
+        <ProcessSection />
         <VisionBento />
         <ServicesSection />
         <ContactSection />

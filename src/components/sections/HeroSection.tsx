@@ -27,7 +27,7 @@ const HeroSection = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-3d-glossy mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-accent-green animate-pulse shadow-[0_0_8px_hsl(var(--accent-green)/0.6)]" />
-            <span className="text-sm font-medium text-foreground/90">Now Accepting Enterprise Clients</span>
+            <span className="text-sm font-medium text-foreground/90">Accepting Early Access Partners</span>
           </motion.div>
 
           <motion.h1
@@ -70,26 +70,10 @@ const HeroSection = () => {
               onClick={() => window.open(BOOKING_URL, '_blank')}
             >
               <Calendar className="w-4 h-4 mr-2 group-hover:text-primary transition-colors" />
-              Book a Demo
+              Apply for Pilot Access
             </Button>
           </motion.div>
 
-          {/* Trusted By Strip */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="mt-12 pt-8 border-t border-border/50"
-          >
-            <p className="text-xs text-muted-foreground mb-4">Built with enterprise standards</p>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-muted-foreground/60">
-              <span className="text-xs font-medium">React</span>
-              <span className="text-xs font-medium">TypeScript</span>
-              <span className="text-xs font-medium">Tailwind CSS</span>
-              <span className="text-xs font-medium">PostgreSQL</span>
-              <span className="text-xs font-medium">AWS</span>
-            </div>
-          </motion.div>
         </div>
       </div>
 
