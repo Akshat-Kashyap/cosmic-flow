@@ -17,8 +17,8 @@ const Index = () => {
         <ProductShowcase />
         <VisionBento />
         <ServicesSection />
-        <FAQSection />
         <ContactSection />
+        <FAQSection />
       </main>
 
       <Footer />
