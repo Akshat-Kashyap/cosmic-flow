@@ -54,7 +54,7 @@ const ContactSection = () => {
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <p className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-wide uppercase">Contact</p>
-          <h2 className="font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-4">Let's build together</h2>
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">Let's build together</h2>
           <p className="text-lg text-muted-foreground">
             Ready to transform your business with intelligent technology? Get in touch and let's discuss how we can
             help.
