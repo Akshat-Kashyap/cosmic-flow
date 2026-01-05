@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, User, FileText } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 
 const blogPosts = [
   {
@@ -45,6 +46,10 @@ const blogPosts = [
 const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Blog - Insights & Updates"
+        description="Stay updated with the latest in AI, security, and enterprise technology from the Agaami AI Labs team."
+      />
       <Navbar />
       
       <main className="pt-24 pb-24">
