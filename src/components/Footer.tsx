@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logo from '@/assets/logo.ico';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,12 +9,10 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Brand */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <span className="font-semibold text-primary-foreground text-xs">A</span>
-            </div>
+          <Link to="/" className="flex items-center gap-2.5">
+            <img src={logo} alt="Agaami" className="w-7 h-7 rounded-lg object-contain" />
             <span className="font-medium text-foreground">Agaami AI Labs</span>
-          </div>
+          </Link>
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground">
